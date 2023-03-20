@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
 
+function delay(time) {
+  return new Promise(function(resolve) { 
+      setTimeout(resolve, time)
+  });
+}
+
 let FullName = '';
 let Username = '';
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -8,13 +14,20 @@ for (let i = 0; i < Math.random()*10; i++) {
   Username += characters.charAt(Math.floor(Math.random() * characters.length));
 }
 
-test('AddUserWithAdmin', async ({ page }) => {
-  await page.goto('http://localhost:8080/pms/');
+var canTestDelete = false;
+
+let url = 'http://localhost:8080/pms/';
+
+test.beforeEach(async ({ page }) => {
+  await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill('blink');
   await page.getByLabel('Username*').press('Tab');
   await page.getByLabel('Password*').fill('temp');
   await page.getByLabel('Password*').press('Enter');
+});
+
+test('AddUserWithAdmin', async ({ page }) => {
   await page.getByRole('menuitem', { name: 'Employees' }).click();
   await page.getByRole('button', { name: ' Add Employee' }).click();
   await page.getByLabel('Full Name*').click();
@@ -30,9 +43,10 @@ test('AddUserWithAdmin', async ({ page }) => {
   await page.getByRole('option', { name: 'nhughes' }).click();
   await page.getByRole('button', { name: 'Submit' }).click();
   await page.getByRole('button', { name: ' Logout' }).click();
-
+  
   //login and logout to check
-  await page.goto('http://localhost:8080/pms/');
+  
+  await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(Username);
   await page.getByLabel('Username*').press('Tab');
@@ -42,14 +56,8 @@ test('AddUserWithAdmin', async ({ page }) => {
 });
 
 test('DeleteUserWithAdmin', async ({ page }) => {
-  await page.goto('http://localhost:8080/pms/');
-  await page.getByLabel('Username*').click();
-  await page.getByLabel('Username*').fill('blink');
-  await page.getByLabel('Username*').press('Tab');
-  await page.getByLabel('Password*').fill('temp');
-  await page.getByLabel('Password*').press('Enter');
   await page.getByRole('menuitem', { name: 'Employees' }).click();
-  await page.getByRole('row', { name: Username+' '+FullName+' HR P5 nhughes   ui-button' }).getByRole('button', { name: ' ui-button' }).click();
+  await page.getByRole('row', { name: Username+' '+FullName+' ' }).getByRole('button', { name: ' ui-button' }).click();
   await page.getByRole('button', { name: ' Logout' }).click();
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(Username);
