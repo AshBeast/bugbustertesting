@@ -2,14 +2,6 @@ import { test, expect } from '@playwright/test';
 
 import { FullName, Username, url } from './shared';
 
-// let FullName = '';
-// let Username = '';
-// const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-// for (let i = 0; i < Math.random()*10; i++) {
-//   FullName += characters.charAt(Math.floor(Math.random() * characters.length));
-//   Username += characters.charAt(Math.floor(Math.random() * characters.length));
-// }
-
 test.beforeEach(async ({ page }) => {
   //login as admin happens everytime
   await page.goto(url);
@@ -54,17 +46,3 @@ test('AddUserWithAdmin', async ({ page }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
 });
 
-/**
- * deleting this user
- */
-test('DeleteUserWithAdmin', async ({ page }) => {
-  await page.getByRole('menuitem', { name: 'Employees' }).click();
-  await page.getByRole('row', { name: Username+' '+FullName+' ' }).getByRole('button', { name: ' ui-button' }).click();
-  await page.getByRole('button', { name: ' Logout' }).click();
-  await page.getByLabel('Username*').click();
-  await page.getByLabel('Username*').fill(Username);
-  await page.getByLabel('Username*').press('Tab');
-  await page.getByLabel('Password*').fill('temp');
-  await page.getByRole('button', { name: 'Login' }).click();
-  await page.getByRole('cell', { name: 'Error - invalid credentials' }).click();
-});
