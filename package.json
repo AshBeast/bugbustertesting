@@ -5,9 +5,9 @@
   "main": "index.js",
   
   "scripts": {
-    "test1": "npx playwright test tests/test1.spec.js --debug",
-    "test2": "npx playwright test tests/test2.spec.js",
-    "test": "npm run test1 && npm run test2"
+    "test1": "npx playwright test tests/test1.spec.js",
+    "test3": "npx playwright test tests/test3.spec.js",
+    "test": "npm run test1 && npm run test3"
   },
   "keywords": [],
   "author": "",

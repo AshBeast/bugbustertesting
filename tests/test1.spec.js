@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { FullNameHRA, UsernameHRA, url } from './shared';
+import {FullNameA, UsernameA, FullNamePMA, UsernamePMA, FullNameHRA, UsernameHRA, url } from './shared';
 
 //by default browserAdd is U for unknown
 let browserAdd = 'U';
@@ -25,9 +25,9 @@ test.beforeEach(async ({ page }) => {
 });
 
 /**
- * Admin adde a new user with randomly generated username and fullname
+ * Admin add a new HR user with randomly generated username and fullname
  */
-test('AddHRUserWithAdmin', async ({ page, browserName }) => {
+test('HRAddUserWithAdmin', async ({ page, browserName }) => {
 
   await page.getByRole('menuitem', { name: 'Employees' }).click();
 
@@ -51,7 +51,8 @@ test('AddHRUserWithAdmin', async ({ page, browserName }) => {
 
   await page.getByRole('button', { name: ' Logout' }).click();
   
-  //This is to make sure the new user can login
+  //This is to make sure the new user can login, needs time before login
+  await page.waitForTimeout(1000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernameHRA);
@@ -61,3 +62,78 @@ test('AddHRUserWithAdmin', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
 });
 
+/**
+ * Admin add a new PM user with randomly generated username and fullname
+ */
+test('PMAddUserWithAdmin', async ({ page, browserName }) => {
+
+  await page.getByRole('menuitem', { name: 'Employees' }).click();
+
+  //making HR
+  await page.getByRole('button', { name: ' Add Employee' }).click();
+  await page.getByLabel('Full Name*').click();
+  await page.getByLabel('Full Name*').fill(browserAdd+FullNamePMA);
+  await page.getByLabel('Full Name*').press('Tab');
+  await page.getByLabel('Username*').fill(browserAdd+UsernamePMA);
+  await page.getByLabel('Username*').press('Tab');
+  await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
+  await page.getByRole('option', { name: 'HR' }).click();
+  await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
+  await page.getByRole('option', { name: 'P5' }).click();
+  await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
+  await page.getByRole('option', { name: 'nhughes' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+
+  //This is to make sure the admin sees the user added in the table
+  await page.getByRole('gridcell', { name: browserAdd+UsernamePMA }).first().click();
+
+  await page.getByRole('button', { name: ' Logout' }).click();
+  
+    //This is to make sure the new user can login, needs time before login
+    await page.waitForTimeout(1000);
+  await page.goto(url);
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernamePMA);
+  await page.getByLabel('Username*').press('Tab');
+  await page.getByLabel('Password*').fill('temp');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('button', { name: ' Logout' }).click();
+});
+
+/**
+ * Admin add a new normal user with randomly generated username and fullname
+ */
+test('AddHRUserWithAdmin', async ({ page, browserName }) => {
+
+  await page.getByRole('menuitem', { name: 'Employees' }).click();
+
+  //making HR
+  await page.getByRole('button', { name: ' Add Employee' }).click();
+  await page.getByLabel('Full Name*').click();
+  await page.getByLabel('Full Name*').fill(browserAdd+FullNameA);
+  await page.getByLabel('Full Name*').press('Tab');
+  await page.getByLabel('Username*').fill(browserAdd+UsernameA);
+  await page.getByLabel('Username*').press('Tab');
+  await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
+  await page.getByRole('option', { name: 'HR' }).click();
+  await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
+  await page.getByRole('option', { name: 'P5' }).click();
+  await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
+  await page.getByRole('option', { name: 'nhughes' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+
+  //This is to make sure the admin sees the user added in the table
+  await page.getByRole('gridcell', { name: browserAdd+UsernameA }).first().click();
+
+  await page.getByRole('button', { name: ' Logout' }).click();
+  
+  //This is to make sure the new user can login, needs time before login
+  await page.waitForTimeout(1000);
+  await page.goto(url);
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernameA);
+  await page.getByLabel('Username*').press('Tab');
+  await page.getByLabel('Password*').fill('temp');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('button', { name: ' Logout' }).click();
+});
