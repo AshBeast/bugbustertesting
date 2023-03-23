@@ -1,24 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-function delay(time) {
-  return new Promise(function(resolve) { 
-      setTimeout(resolve, time)
-  });
-}
+import { FullName, Username, url } from './shared';
 
-let FullName = '';
-let Username = '';
-const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-for (let i = 0; i < Math.random()*10; i++) {
-  FullName += characters.charAt(Math.floor(Math.random() * characters.length));
-  Username += characters.charAt(Math.floor(Math.random() * characters.length));
-}
-
-var canTestDelete = false;
-
-let url = 'http://localhost:8080/pms/';
+// let FullName = '';
+// let Username = '';
+// const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+// for (let i = 0; i < Math.random()*10; i++) {
+//   FullName += characters.charAt(Math.floor(Math.random() * characters.length));
+//   Username += characters.charAt(Math.floor(Math.random() * characters.length));
+// }
 
 test.beforeEach(async ({ page }) => {
+  //login as admin happens everytime
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill('blink');
@@ -27,6 +20,9 @@ test.beforeEach(async ({ page }) => {
   await page.getByLabel('Password*').press('Enter');
 });
 
+/**
+ * Admin adde a new user with randomly generated username and fullname
+ */
 test('AddUserWithAdmin', async ({ page }) => {
   await page.getByRole('menuitem', { name: 'Employees' }).click();
   await page.getByRole('button', { name: ' Add Employee' }).click();
@@ -35,17 +31,20 @@ test('AddUserWithAdmin', async ({ page }) => {
   await page.getByLabel('Full Name*').press('Tab');
   await page.getByLabel('Username*').fill(Username);
   await page.getByLabel('Username*').press('Tab');
-  await page.locator('[id="j_idt71\\:empType_label"]').click();
+  await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
   await page.getByRole('option', { name: 'HR' }).click();
-  await page.locator('[id="j_idt71\\:payGrade_label"]').click();
+  await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
   await page.getByRole('option', { name: 'P5' }).click();
-  await page.locator('[id="j_idt71\\:supervisor_label"]').click();
+  await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
   await page.getByRole('option', { name: 'nhughes' }).click();
   await page.getByRole('button', { name: 'Submit' }).click();
+
+  //This is to make sure the admin sees the user added in the table
+  await page.getByRole('gridcell', { name: Username }).click();
+
   await page.getByRole('button', { name: ' Logout' }).click();
   
-  //login and logout to check
-  
+  //This is to make sure the new user can login
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(Username);
@@ -55,6 +54,9 @@ test('AddUserWithAdmin', async ({ page }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
 });
 
+/**
+ * deleting this user
+ */
 test('DeleteUserWithAdmin', async ({ page }) => {
   await page.getByRole('menuitem', { name: 'Employees' }).click();
   await page.getByRole('row', { name: Username+' '+FullName+' ' }).getByRole('button', { name: ' ui-button' }).click();
