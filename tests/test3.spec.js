@@ -1,41 +1,58 @@
 import { test, expect } from '@playwright/test';
 
-import { url } from './shared';
+import {url,
+    //HR user made by admin
+    FullNameHRA, UsernameHRA, 
+    //PM user made by admin
+    FullNamePMA, UsernamePMA,
+    //normal user made by admin 
+    FullNameA, UsernameA,
+    //HR user made by HR
+    FullNameHRH, UsernameHRH,
+    //PM user made by HR 
+    FullNamePMH, UsernamePM,
+    //normal user made by HR
+    FullNameH, UsernameH} from './shared';
 
-//by default usersToDelete is Utest for unknown browser
-let usersToDelete = 'Utest';
+//by default browserAdd is U for unknown
+let browserAdd = 'U';
 test.beforeAll(async ({ browserName }) => {
-  //checking the browser and deleting correct users
+  //checking the browser and adding character to see the diffrence
   if (browserName === 'chromium'){
-    usersToDelete = 'Ctest';
+    browserAdd = 'C';
   } else if (browserName === 'firefox'){
-    usersToDelete = 'Ftest';
+    browserAdd = 'F';
   } else if (browserName === 'webkit'){
-    usersToDelete = 'Wtest';
+    browserAdd = 'W';
   }
 });
 
 test.beforeEach(async ({ page }) => {
-    //login as admin happens everytime
     await page.goto(url);
-    await page.getByLabel('Username*').click();
-    await page.getByLabel('Username*').fill('blink');
-    await page.getByLabel('Username*').press('Tab');
-    await page.getByLabel('Password*').fill('temp');
-    await page.getByLabel('Password*').press('Enter');
-  });
+});
 
 /**
- * deleting this user as admin
+ * normal user that was created by HR 
+ * will change password in this test
  */
-test('DeleteUserWithAdmin', async ({ page }) => {
-  
-    await page.getByRole('menuitem', { name: 'Employees' }).click();
-    //deleting chrome made test's
-    while (await page.getByRole('row', { name: usersToDelete }).count() > 0){
-        await page.getByRole('row', { name: usersToDelete }).first().getByRole('button', { name: ' ui-button' }).click();
-        //give it a chance to work by waiting one second
-        await page.waitForTimeout(1000);
-    }
-    await page.getByRole('button', { name: ' Logout' }).click();
-  });
+test('normalUserChangePass', async ({ page }) => {
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernameH);
+  await page.getByLabel('Password*').click();
+  await page.getByLabel('Password*').fill('temp');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('menuitem', { name: 'Reset Password' }).click();
+  await page.getByLabel('New Password*', { exact: true }).click();
+  await page.getByLabel('New Password*', { exact: true }).fill('somepass');
+  await page.getByLabel('New Password*', { exact: true }).press('Tab');
+  await page.getByLabel('Confirm New Password*').fill('somepass');
+  await page.getByRole('button', { name: 'Reset Password' }).click();
+  await page.getByRole('button', { name: ' Logout' }).click();
+  await page.waitForTimeout(1000);
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernameH);
+  await page.getByLabel('Password*').click();
+  await page.getByLabel('Password*').fill('somepass');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('button', { name: ' Logout' }).click();
+});
