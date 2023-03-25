@@ -25,13 +25,3 @@ export let UsernamePM = 'testHRCrPM';
 //'H' means normal user created by HR
 export let FullNameH = 'testHRCr';
 export let UsernameH = 'testHRCr';
-
-
-// /**
-//  * add random amount of random characters
-//  */
-// const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-// for (let i = 0; i < Math.random()*10; i++) {
-//   FullNameHRA += characters.charAt(Math.floor(Math.random() * characters.length));
-//   UsernameHRA += characters.charAt(Math.floor(Math.random() * characters.length));
-// }

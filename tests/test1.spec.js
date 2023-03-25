@@ -94,8 +94,8 @@ test('PMAddUserWithAdmin', async ({ page, browserName }) => {
 
   await page.getByRole('button', { name: ' Logout' }).click();
   
-    //This is to make sure the new user can login, needs time before login
-    await page.waitForTimeout(1000);
+  //This is to make sure the new user can login, needs time before login
+  await page.waitForTimeout(1000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernamePMA);
