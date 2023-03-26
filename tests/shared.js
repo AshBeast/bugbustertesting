@@ -20,7 +20,7 @@ export let UsernameHRH = 'testHRCrHR';
 
 //PMH means PM user created by HR
 export let FullNamePMH = 'testHRCrPM';
-export let UsernamePM = 'testHRCrPM';
+export let UsernamePMH = 'testHRCrPM';
 
 //'H' means normal user created by HR
 export let FullNameH = 'testHRCr';

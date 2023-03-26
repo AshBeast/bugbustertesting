@@ -10,7 +10,7 @@
  * will remove all information in the database
  * that is not in the mysql file.
  */
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 import { url } from './shared'
 

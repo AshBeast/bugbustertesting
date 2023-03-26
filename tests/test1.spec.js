@@ -3,7 +3,7 @@
  * these Project Manager(PM), Human resources(HR).
  * If this test file fails the rest of the test files will not be run.
  */
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 import {FullNameA, UsernameA, FullNamePMA, UsernamePMA, FullNameHRA, UsernameHRA, url } from './shared';
 
