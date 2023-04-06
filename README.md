@@ -1,13 +1,11 @@
-Playwright Setup Guide for PMS Created by Ashkan Zahedanaraki of The BugBusters team - README
+# Playwright Setup Guide for PMS Created by Ashkan Zahedanaraki of The BugBusters team - README
 
-Playwright is a Node.js library that allows you to automate browser actions such as launching browsers, navigating web pages, and interacting with the content. This README will guide you through the steps required to set up and use Playwright.
+## Playwright is a Node.js library that allows you to automate browser actions such as launching browsers, navigating web pages, and interacting with the content. This README will guide you through the steps required to set up and use Playwright.
 
-📚 Table of Contents
-Prerequisites
-Installation
-Writing Your First Script
-Running Your Script
-Additional Resources
+- 📚 Table of Contents
+- Prerequisites
+- Installation
+
 📋 Prerequisites <a name="prerequisites"></a>
 Before installing Playwright, make sure you have the following software installed on your system:
 
