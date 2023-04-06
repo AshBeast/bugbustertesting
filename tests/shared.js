@@ -2,6 +2,8 @@ import { expect } from '@playwright/test';
 
 export let url = 'http://localhost:8080/pms/';
 
+// export let url = 'https://pms-itr3-v2-des.apps.okd4.infoteach.ca/';
+
 //HRA means HR user created by A or admin
 export let FullNameHRA = 'testAdminCrHR';
 export let UsernameHRA = 'testAdminCrHR';

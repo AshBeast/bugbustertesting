@@ -1,5 +1,5 @@
 /**
- * like the last test The purpose of this test file is to make the 3 types of users
+ * like the last test The purpose of this test file is to make the 3 types of users with HR account
  * but as Human resources(HR) user that was created from the last test.
  * these Project Manager(PM), Human resources(HR).
  * If this test file fails the rest of the test files will not be run.
@@ -62,7 +62,7 @@ test('HRAddUserWithHR', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
   
   //This is to make sure the new user can login, needs time before login
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernameHRH);
@@ -87,7 +87,7 @@ test('PMAddUserWithHR', async ({ page, browserName }) => {
   await page.getByLabel('Username*').fill(browserAdd+UsernamePMH);
   await page.getByLabel('Username*').press('Tab');
   await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
-  await page.getByRole('option', { name: 'HR' }).click();
+  await page.getByRole('option', { name: 'PM' }).click();
   await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
   await page.getByRole('option', { name: 'P5' }).click();
   await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
@@ -100,7 +100,7 @@ test('PMAddUserWithHR', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
   
   //This is to make sure the new user can login, needs time before login
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernamePMH);
@@ -125,7 +125,7 @@ test('AddUserWithHR', async ({ page, browserName }) => {
   await page.getByLabel('Username*').fill(browserAdd+UsernameH);
   await page.getByLabel('Username*').press('Tab');
   await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
-  await page.getByRole('option', { name: 'HR' }).click();
+  await page.getByRole('option', { name: 'Employee', exact: true }).click();
   await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
   await page.getByRole('option', { name: 'P5' }).click();
   await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
@@ -138,12 +138,30 @@ test('AddUserWithHR', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
   
   //This is to make sure the new user can login, needs time before login
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernameH);
   await page.getByLabel('Username*').press('Tab');
   await page.getByLabel('Password*').fill('temp');
   await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('button', { name: ' Logout' }).click();
+});
+
+/**
+ * Disable all the user's created by admin for testing
+ * This is a long test.
+ */
+test('Disable Admin Created Users', async ({ page }) => {
+
+  await page.getByRole('menuitem', { name: 'Employees' }).click();
+
+  //deleting chrome made test's
+  while (await page.getByRole('row', { name: browserAdd+'testAdmin' }).getByRole('button', { name: ' Deactivate Employee' }).count() > 0){
+    await page.getByRole('menuitem', { name: 'Employees' }).click();
+    await page.getByRole('row', { name: browserAdd+'testAdmin' }).first().getByRole('button', { name: ' Deactivate Employee' }).click();
+    //give it a chance to work by waiting one second
+    await page.waitForTimeout(2000);
+  }
   await page.getByRole('button', { name: ' Logout' }).click();
 });

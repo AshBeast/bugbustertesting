@@ -49,7 +49,7 @@ test('DeleteUserWithAdmin', async ({ page }) => {
     //deleting chrome made test's
     while (await page.getByRole('row', { name: browserAdd+'test' }).count() > 0){
       await page.getByRole('menuitem', { name: 'Employees' }).click();
-      await page.getByRole('row', { name: browserAdd+'test' }).first().getByRole('button', { name: ' ui-button' }).click();
+      await page.getByRole('row', { name: browserAdd+'test' }).first().getByRole('button', { name: ' Delete Employee' }).click();
       //give it a chance to work by waiting one second
       await page.waitForTimeout(2000);
     }

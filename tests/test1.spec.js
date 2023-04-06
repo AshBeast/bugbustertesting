@@ -1,5 +1,5 @@
 /**
- * The purpose of this test file is to make the 3 types of users as admin, 
+ * The purpose of this test file is to make the 3 types of users as admin account, 
  * these Project Manager(PM), Human resources(HR).
  * If this test file fails the rest of the test files will not be run.
  */
@@ -57,7 +57,7 @@ test('HRAddUserWithAdmin', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
   
   //This is to make sure the new user can login, needs time before login
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernameHRA);
@@ -82,9 +82,9 @@ test('PMAddUserWithAdmin', async ({ page, browserName }) => {
   await page.getByLabel('Username*').fill(browserAdd+UsernamePMA);
   await page.getByLabel('Username*').press('Tab');
   await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
-  await page.getByRole('option', { name: 'HR' }).click();
+  await page.getByRole('option', { name: 'PM' }).click();
   await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
-  await page.getByRole('option', { name: 'P5' }).click();
+  await page.getByRole('option', { name: 'P2' }).click();
   await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
   await page.getByRole('option', { name: 'nhughes' }).click();
   await page.getByRole('button', { name: 'Submit' }).click();
@@ -95,7 +95,7 @@ test('PMAddUserWithAdmin', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
   
   //This is to make sure the new user can login, needs time before login
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernamePMA);
@@ -120,9 +120,9 @@ test('AddHRUserWithAdmin', async ({ page, browserName }) => {
   await page.getByLabel('Username*').fill(browserAdd+UsernameA);
   await page.getByLabel('Username*').press('Tab');
   await page.getByRole('combobox').filter({ hasText: 'Employee Type' }).locator('span').click();
-  await page.getByRole('option', { name: 'HR' }).click();
+  await page.getByRole('option', { name: 'Employee', exact: true }).click();
   await page.getByRole('combobox').filter({ hasText: 'Pay Grade' }).locator('span').click();
-  await page.getByRole('option', { name: 'P5' }).click();
+  await page.getByRole('option', { name: 'P1' }).click();
   await page.getByRole('combobox').filter({ hasText: 'supervisor' }).locator('span').click();
   await page.getByRole('option', { name: 'nhughes' }).click();
   await page.getByRole('button', { name: 'Submit' }).click();
@@ -133,7 +133,7 @@ test('AddHRUserWithAdmin', async ({ page, browserName }) => {
   await page.getByRole('button', { name: ' Logout' }).click();
   
   //This is to make sure the new user can login, needs time before login
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
   await page.goto(url);
   await page.getByLabel('Username*').click();
   await page.getByLabel('Username*').fill(browserAdd+UsernameA);
