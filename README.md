@@ -2,17 +2,17 @@
 
 ## Playwright is a Node.js library that allows you to automate browser actions such as launching browsers, navigating web pages, and interacting with the content. This README will guide you through the steps required to set up and use Playwright.
 
-- We made these playwirght tests to have quick way to test our use-cases in our PMS app
+- We made these playwirght tests to have quick way to test our use-cases in our PMS web app
 - Playwright allowed us to test, build and maintain our web applications.
 - The use-cases that are runned here will support Chrome, FireFox, and Webkit
 
 ## 📚 Table of Contents
-- [Prerequisites](#Prerequisites)
-- [Installation](#installation)
-- [Before running](#beforerunning)
-- [How to run](howtorun)
-- [How it should look](howitshouldlook)
-- [Credits](#credits)
+- Prerequisites
+- Installation
+- Before running
+- How to run
+- How it should look
+- Credits
 
 ## 📋 Prerequisites
 Before installing Playwright, make sure you have the following software installed on your system:
@@ -53,8 +53,34 @@ export let url = 'URL';
 This URL should lead to PMS. it does not matter if it is deployed or locally hosted,
 if you can use this URL so can playwirght.
 
+Please take note we are not responsible if these test brake your web app.
+use caution when running this.
+
+You need to have your database backed up before running this test.
+You need to reset your database everytime you run this test, you can use your backup or the mysql file provided.
+
+
 ## 🏃 How to run
 
+To run all the tests, run this command: 
+```
+npm test
+```
+run the mysql file or use your backup to get rid of the "test users" these tests created.
+
+To debug all the tests
+```
+npm test
+```
+
+## 👁️‍🗨️ How it should look
+
+
+## 💳 Credits
+
+I used documentation from the Playwright website to learn and trouble shoot.
+
+https://playwright.dev/docs/intro
 
 # Purpose of this test
 
