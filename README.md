@@ -2,12 +2,18 @@
 
 ## Playwright is a Node.js library that allows you to automate browser actions such as launching browsers, navigating web pages, and interacting with the content. This README will guide you through the steps required to set up and use Playwright.
 
-- 📚 Table of Contents
-- Prerequisites
-- Installation
 
-📋 Prerequisites <a name="prerequisites"></a>
+## 📚 Table of Contents
+[Prerequisites](#Prerequisites)
+[Installation](#installation)
+
+## 📋 Prerequisites
 Before installing Playwright, make sure you have the following software installed on your system:
+
+```
+node -v
+npm -v
+```
 
 Node.js (version 12 or higher)
 npm (version 6 or higher, usually bundled with Node.js)
