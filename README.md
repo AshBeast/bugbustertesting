@@ -17,8 +17,9 @@
 ## 📋 Prerequisites
 Before installing Playwright, make sure you have the following software installed on your system:
 
-Node.js (version 12 or higher)
-npm (version 6 or higher, usually bundled with Node.js)
+- Node.js (version 12 or higher)
+- npm (version 6 or higher, usually bundled with Node.js)
+
 
 You can check the installed versions of Node.js and npm by running the following commands in your terminal or command prompt:
 
@@ -36,6 +37,23 @@ npm install playwright
 ```
 
 This command installs Playwright and its browser dependencies (Chromium, Firefox, and WebKit).
+
+## 📝 Before running
+
+use the following commands to download our test and make your working directory inside the new directory:
+```
+git clone https://github.com/AshBeast/bugbustertesting.git
+cd bugbustertesting
+```
+
+Make sure playwright has the correct URL by checking the file /tests/shared.js
+```
+export let url = 'URL';
+```
+This URL should lead to PMS. it does not matter if it is deployed or locally hosted,
+if you can use this URL so can playwirght.
+
+## 🏃 How to run
 
 
 # Purpose of this test

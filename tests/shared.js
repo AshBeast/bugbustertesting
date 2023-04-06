@@ -1,5 +1,8 @@
 import { expect } from '@playwright/test';
 
+/**
+ * Make sure this url navigates to PMS.
+ */
 export let url = 'http://localhost:8080/pms/';
 
 //HRA means HR user created by A or admin
