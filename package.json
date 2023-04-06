@@ -8,8 +8,7 @@
     "test1": "npx playwright test tests/test1.spec.js",
     "test2": "npx playwright test tests/test2.spec.js",
     "test3": "npx playwright test tests/test3.spec.js",
-    "test4": "npx playwright test tests/test4.spec.js --workers=1",
-    "test": "npm run test1 && npm run test2 && npm run test3 && npm run test4"
+    "test": "npm run test1 && npm run test2 && npm run test3"
   },
   "keywords": [],
   "author": "",

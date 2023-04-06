@@ -1,11 +1,14 @@
 /**
  * The purpose of this test file is to delete anything made during the test.
  * This includes: user's created by admin or HR
+ * 
+ * This no longer works, it is removed from the package.json.
+ * the use-case delete users was removed from the web app.
+ * We made this change because we didn't want to go to jail.
  */
 import { test } from '@playwright/test';
 
-import { url,
-        UsernameHRA} from './shared';
+import { url } from './shared';
 
 //by default browserAdd is U for unknown
 let browserAdd = 'U';

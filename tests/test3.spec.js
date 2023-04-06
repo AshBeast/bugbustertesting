@@ -8,6 +8,12 @@
 import { test } from '@playwright/test';
 
 import {url,
+    //HR user made by Admin
+    UsernameHRA,
+    //PM user made by Admin
+    UsernamePMA,
+    //normal user made by Admin
+    UsernameA,
     //HR user made by HR
     UsernameHRH,
     //PM user made by HR 
@@ -30,6 +36,42 @@ test.beforeAll(async ({ browserName }) => {
 
 test.beforeEach(async ({ page }) => {
     await page.goto(url);
+});
+
+/**
+ * This is to check if the test disable users from test2 worked.
+ */
+test('check disabled admin created HR user', async ({ page }) => {
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernameHRA);
+  await page.getByLabel('Password*').click();
+  await page.getByLabel('Password*').fill('temp');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('cell', { name: 'Error - invalid credentials' }).click()
+});
+
+/**
+ * This is to check if the test disable users from test2 worked.
+ */
+test('check disabled admin created PM user', async ({ page }) => {
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernamePMA);
+  await page.getByLabel('Password*').click();
+  await page.getByLabel('Password*').fill('temp');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('cell', { name: 'Error - invalid credentials' }).click()
+});
+
+/**
+ * This is to check if the test disable users from test2 worked.
+ */
+test('check disabled admin created employee user', async ({ page }) => {
+  await page.getByLabel('Username*').click();
+  await page.getByLabel('Username*').fill(browserAdd+UsernameA);
+  await page.getByLabel('Password*').click();
+  await page.getByLabel('Password*').fill('temp');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('cell', { name: 'Error - invalid credentials' }).click()
 });
 
 /**

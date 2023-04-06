@@ -6,7 +6,7 @@
  */
 import { test } from '@playwright/test';
 
-import {url, 
+import {url,
       FullNameH, UsernameH,
       FullNamePMH, UsernamePMH, 
       FullNameHRH, UsernameHRH, 
@@ -152,16 +152,28 @@ test('AddUserWithHR', async ({ page, browserName }) => {
  * Disable all the user's created by admin for testing
  * This is a long test.
  */
-test('Disable Admin Created Users', async ({ page }) => {
+test('Disable Admin Created Users', async ({ page, browserName }) => {
 
   await page.getByRole('menuitem', { name: 'Employees' }).click();
 
   //deleting chrome made test's
+  
   while (await page.getByRole('row', { name: browserAdd+'testAdmin' }).getByRole('button', { name: ' Deactivate Employee' }).count() > 0){
     await page.getByRole('menuitem', { name: 'Employees' }).click();
     await page.getByRole('row', { name: browserAdd+'testAdmin' }).first().getByRole('button', { name: ' Deactivate Employee' }).click();
     //give it a chance to work by waiting one second
     await page.waitForTimeout(2000);
   }
-  await page.getByRole('button', { name: ' Logout' }).click();
+
+  //Firefox's count() doesn't return correct number
+  //Work around
+  if (browserName === 'firefox'){
+    await page.getByRole('row', { name: browserAdd+'testAdmin' }).first().getByRole('button', { name: ' Deactivate Employee' }).click();
+    await page.waitForTimeout(2000);
+    await page.getByRole('row', { name: browserAdd+'testAdmin' }).first().getByRole('button', { name: ' Deactivate Employee' }).click();
+    await page.waitForTimeout(2000);
+    await page.getByRole('row', { name: browserAdd+'testAdmin' }).first().getByRole('button', { name: ' Deactivate Employee' }).click();
+  }
+
+  await page.getByRole('button', { name: ' Logout' }).click(); 
 });
