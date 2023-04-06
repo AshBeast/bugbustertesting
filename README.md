@@ -1,23 +1,42 @@
-# Playwright Setup Guide for PMS Created by Ashkan Zahedanaraki of The BugBusters team - README
+# Playwright Setup Guide for PMS Created by Ashkan Zahedanaraki with The BugBusters team - README
 
 ## Playwright is a Node.js library that allows you to automate browser actions such as launching browsers, navigating web pages, and interacting with the content. This README will guide you through the steps required to set up and use Playwright.
 
+- We made these playwirght tests to have quick way to test our use-cases in our PMS app
+- Playwright allowed us to test, build and maintain our web applications.
+- The use-cases that are runned here will support Chrome, FireFox, and Webkit
 
 ## 📚 Table of Contents
-[Prerequisites](#Prerequisites)
-[Installation](#installation)
+- [Prerequisites](#Prerequisites)
+- [Installation](#installation)
+- [Before running](#beforerunning)
+- [How to run](howtorun)
+- [How it should look](howitshouldlook)
+- [Credits](#credits)
 
 ## 📋 Prerequisites
 Before installing Playwright, make sure you have the following software installed on your system:
+
+Node.js (version 12 or higher)
+npm (version 6 or higher, usually bundled with Node.js)
+
+You can check the installed versions of Node.js and npm by running the following commands in your terminal or command prompt:
 
 ```
 node -v
 npm -v
 ```
 
-Node.js (version 12 or higher)
-npm (version 6 or higher, usually bundled with Node.js)
-You can check the installed versions of Node.js and npm by running the following commands in your terminal or command prompt:
+## 🔧 Installation 
+
+To install Playwright, open your terminal or command prompt and run the following command:
+
+```
+npm install playwright
+```
+
+This command installs Playwright and its browser dependencies (Chromium, Firefox, and WebKit).
+
 
 # Purpose of this test
 
