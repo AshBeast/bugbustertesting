@@ -12,6 +12,7 @@
 - Before running
 - How to run
 - How it should look
+- Test fail
 - Credits
 
 ## 📋 Prerequisites
@@ -66,7 +67,7 @@ To run all the tests, run this command:
 ```
 npm test
 ```
-run the mysql file or use your backup to get rid of the "test users" these tests created.
+run the mysql file or use your backup to get rid of the "test users" these tests created and other garbage info.
 
 To debug all the tests
 ```
@@ -75,6 +76,7 @@ npm test
 
 ## 👁️‍🗨️ How it should look
 
+## 🚫 Test fail
 
 ## 💳 Credits
 
