@@ -1,5 +1,8 @@
 import { expect } from '@playwright/test';
 
+/**
+ * Make sure this url navigates to PMS.
+ */
 export let url = 'http://localhost:8080/pms/';
 
 // export let url = 'https://pms-itr3-v2-des.apps.okd4.infoteach.ca/';
