@@ -105,8 +105,3 @@ I used documentation from the Playwright website to learn and trouble shoot. Thi
 https://playwright.dev/docs/intro
 
 
-# 3. how to debug a testfile
-
-open package.json you will see 4 tests
-
-
