@@ -32,7 +32,7 @@ test.beforeEach(async ({ page }) => {
 /**
  * Admin add a new HR user with randomly generated username and fullname
  */
-test('HRAddUserWithAdmin', async ({ page, browserName }) => {
+test('HRAddUserWithAdmin', async ({ page }) => {
 
   await page.getByRole('menuitem', { name: 'Employees' }).click();
 

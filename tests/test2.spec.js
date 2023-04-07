@@ -151,6 +151,8 @@ test('AddUserWithHR', async ({ page, browserName }) => {
 /**
  * Disable all the user's created by admin for testing
  * This is a long test.
+ * This test should stay at the buttom because it deactivates the HR created by admin
+ * This could interefer with other tests if they aren't already logged in 
  */
 test('Disable Admin Created Users', async ({ page, browserName }) => {
 
