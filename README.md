@@ -114,6 +114,9 @@ Debuging is very useful to finding issues. you can add `--debug` after the comma
 npx playwright test tests/test1.spec.js --debug
 ```
 
+Already mentioned this but We recommend that if you want to run the test file test2.spec.js you run test1.spec.js before that.
+and if you want to run test3.spec.js you should run test1.spec.js and test2.spec.js first.
+
 or you can change the file /package.json 's scripts from
 
 ```
